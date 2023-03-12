@@ -5,6 +5,7 @@ let g:formatyaya_loaded = 1
 
 let s:sep = fnamemodify('.', ':p')[-1:]
 let s:cmd_dir = expand('<script>:p:h:h') .. s:sep .. 'cmd'
+let s:errmsg = 'error'
 
 function! formatyaya#copytotmp()
   let s:lines = getline(0,line('$'))
@@ -20,15 +21,24 @@ function! formatyaya#format(file)
     let l:cmd = 'formatyaya_linux_amd64'
   endif
   let s:result = system(s:cmd_dir .. s:sep .. l:cmd .. ' -s ' .. expand(a:file, ':p'))
+  if v:shell_error
+    return s:errmsg
+  endif
   return s:result
 endfunction
 
 function! formatyaya#paste(lines)
-  let l:pos = getpos('.')
-  execute '0,' .. line('$') .. 'd'
-  put =a:lines
-  0d
-  call setpos('.', l:pos)
+  if a:lines == s:errmsg
+    echohl ErrorMsg
+    echo 'format failed: syntax error'
+    echohl NONE
+  else
+    let l:pos = getpos('.')
+    execute '0,' .. line('$') .. 'd'
+    put =a:lines
+    0d
+    call setpos('.', l:pos)
+  endif
 endfunction
 
 command! FmtYaya call formatyaya#paste(formatyaya#format(formatyaya#copytotmp()))
