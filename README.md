@@ -14,3 +14,9 @@ repo = 'apxxxxxxe/formatyaya.vim'
 
 ## usage
 ```:FmtYaya```
+
+## customize
+### variable
+#### g:formatyaya_option
+commandline options for formatyaya.  
+default is `'-s -c 2'`

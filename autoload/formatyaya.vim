@@ -20,7 +20,7 @@ function! formatyaya#format(file)
   else
     let l:cmd = 'formatyaya_linux_amd64'
   endif
-  let s:result = system(s:cmd_dir .. s:sep .. l:cmd .. ' -s ' .. expand(a:file, ':p'))
+  let s:result = system(s:cmd_dir .. s:sep .. l:cmd .. ' ' .. g:formatyaya_option .. ' ' .. expand(a:file, ':p'))
   if v:shell_error
     return s:errmsg
   endif
