@@ -12,11 +12,12 @@ Plug 'apxxxxxxe/formatyaya.vim'
 repo = 'apxxxxxxe/formatyaya.vim'
 ```
 
-## usage
-```:FmtYaya```
+## commands
+### `:FmtYaya`
+execute formatting
 
-## customize
-### variable
-#### g:formatyaya_option
-commandline options for formatyaya.  
-default is `'-s -c 2'`
+## variables
+### `g:formatyaya_option`
+
+commandline options for formatyaya  
+default value is `'-s -c 2'`
