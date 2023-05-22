@@ -34,7 +34,7 @@ function! formatyaya#paste(lines)
     echohl NONE
   else
     let l:pos = getpos('.')
-    execute '0,' .. line('$') .. 'd'
+    execute '0,' .. line('$') .. 'd _'
     put =a:lines
     0d
     call setpos('.', l:pos)
